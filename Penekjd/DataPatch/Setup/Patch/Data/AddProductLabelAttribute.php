@@ -29,7 +29,7 @@ class AddProductLabelAttribute implements DataPatchInterface
                 'label' => 'Label Text',
                 'input' => 'text',
                 'required' => false,
-                'sort_order' => 100,
+                'sort_order' => 200,
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'visible' => true,
                 'user_defined' => true,
