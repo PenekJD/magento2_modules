@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/widget_file.xsd">
+    <widget id="color_widget"
+            class="Penekjd\Widgets\Block\Widget\ColorBlock">
+        <label translate="true">Color Block</label>
+        <description translate="true">You can draw your own block</description>
+        <parameters>
+            <parameter name="wysiwyg_config" 
+                       xsi:type="block"
+                       required="false"
+                       visible="true"
+            >
+                <label>Block drawer</label>
+                <block class="Penekjd\Widgets\Block\Widget\Wysiwyg" />
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

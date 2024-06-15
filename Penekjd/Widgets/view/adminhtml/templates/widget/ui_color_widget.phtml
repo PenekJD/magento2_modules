@@ -1,0 +1,15 @@
+<?php
+use Magento\Backend\Block\Template;
+use Magento\Framework\Escaper;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+
+$value = $block->getData('form_value');
+$name = $block->getData('form_name');
+$id = $block->getData('form_id');
+?>
+<input name="<?= $escaper->escapeHtmlAttr($name) ?>" 
+       value="<?= $escaper->escapeHtmlAttr($value) ?>"
+       id="<?= $escaper->escapeHtmlAttr($id) ?>"/>
+

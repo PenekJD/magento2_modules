@@ -1,0 +1,13 @@
+<?php
+use Penekjd\Widgets\Block\Widget\ColorBlock;
+use Magento\Framework\Escaper;
+
+/** @var ColorBlock $block */
+/** @var Escaper $escaper */
+
+$config = $block->getConfigJson();
+?>
+<div class="template">
+    <h1><?= $escaper->escapeHtml(__('Color widget Demo') . ':') ?></h1>
+    <?= /** @noEscape */ $config ?>
+</div>
