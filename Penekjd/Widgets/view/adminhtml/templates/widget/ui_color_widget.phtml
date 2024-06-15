@@ -9,7 +9,70 @@ $value = $block->getData('form_value');
 $name = $block->getData('form_name');
 $id = $block->getData('form_id');
 ?>
-<input name="<?= $escaper->escapeHtmlAttr($name) ?>" 
+<input class="js_color_widget_config"
+       name="<?= $escaper->escapeHtmlAttr($name) ?>" 
        value="<?= $escaper->escapeHtmlAttr($value) ?>"
        id="<?= $escaper->escapeHtmlAttr($id) ?>"/>
+
+
+<div class="color_widget js-color-widget">
+    <div class="panel">
+        <button class="js-add-button">+</button>
+    </div>
+    <div class="preview js_color_widget">
+
+    </div>
+</div>
+
+
+<script>
+    (function(){
+        
+        let widgetPreview = document.querySelectorAll(".js-color-widget");
+
+        if (!widgetPreview.length) {
+            return;
+        }
+
+        function createWidgetPreview(element){
+            let addButtons = element.querySelector('.js-add-button');
+
+            addButtons.addEventListener('click', function(event){
+                event.preventDefault();
+            });
+        }
+
+        widgetPreview.forEach(createWidgetPreview);
+
+    })();
+</script>
+
+
+<style>
+.admin__field.field.field-<?= $escaper->escapeCss($id) ?> {
+    display: flex;
+    flex-direction: column;
+}
+.admin__field.field.field-<?= $escaper->escapeCss($id) ?> .admin__field,
+.admin__field.field.field-<?= $escaper->escapeCss($id) ?> .admin__field-control.control {
+    width: 100%;
+}
+.admin__field.field.field-<?= $escaper->escapeCss($id) ?> .label.admin__field-label {
+    text-align: left;
+}
+
+.js_color_widget_config {
+    display:none;
+}
+.color_widget {
+    border: 1px solid #333;
+}
+.color_widget .panel {
+    background-color: #eee;
+    padding: 4px;
+}
+.color_widget .preview {
+    min-height:30px;
+}
+</style>
 
