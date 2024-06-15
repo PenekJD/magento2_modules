@@ -13,6 +13,7 @@ $id = $block->getData('form_id');
        name="<?= $escaper->escapeHtmlAttr($name) ?>" 
        value="<?= $escaper->escapeHtmlAttr($value) ?>"
        id="<?= $escaper->escapeHtmlAttr($id) ?>"/>
+<input id="upload_image" name="image" type="file"/>
 
 
 <div class="color_widget js-color-widget">
@@ -29,8 +30,9 @@ $id = $block->getData('form_id');
     (function(){
         
         let widgetPreview = document.querySelectorAll(".js-color-widget");
+        let imageUpload = document.querySelector("#upload_image");
 
-        if (!widgetPreview.length) {
+        if (!widgetPreview.length || !FORM_KEY) {
             return;
         }
 
@@ -39,6 +41,33 @@ $id = $block->getData('form_id');
 
             addButtons.addEventListener('click', function(event){
                 event.preventDefault();
+
+                let formData = new FormData();
+                formData.append('test_value', 'Hello from frontend')
+                formData.append('form_key', FORM_KEY);
+                console.log(imageUpload.files[0]);
+                if (imageUpload && imageUpload.files[0]) {
+                    formData.append('filepath', imageUpload.files[0]);
+                }
+                
+                fetch(
+                    '/admin/postimage/index/upload',
+                    {
+                        method: 'POST',
+                        credentials: "same-origin",
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    }
+                ).then( response => {
+                    console.log(response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                });
+
             });
         }
 
