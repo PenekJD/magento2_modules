@@ -33,7 +33,6 @@ class Upload extends Action implements HttpPostActionInterface
         try {
             $filePath = '';
 
-            
             $mediaDirectory = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
             $uploader = $this->uploaderFactory->create(['fileId' => 'filepath']);
             $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
