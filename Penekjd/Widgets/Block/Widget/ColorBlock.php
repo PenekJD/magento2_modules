@@ -9,6 +9,6 @@ class ColorBlock extends \Magento\Framework\View\Element\Template
 
     public function getConfigJson(): string
     {
-        return $this->getData('wysiwyg_config');
+        return $this->getData('wysiwyg_config') ?? '{}';
     }
 }
