@@ -42,6 +42,9 @@
                        showInStore="0">
                     <label>Display Text</label>
                     <comment>This text will display on the frontend.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
             </group>
         </section>
