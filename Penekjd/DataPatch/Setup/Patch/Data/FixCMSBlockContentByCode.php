@@ -21,7 +21,6 @@ class FixCMSBlockContentByCode implements DataPatchInterface
    ) {
    }
 
-
    public function apply()
    {
        $this->moduleDataSetup->startSetup();
@@ -56,12 +55,10 @@ class FixCMSBlockContentByCode implements DataPatchInterface
        return $this;
    }
 
-
    public static function getDependencies()
    {
        return [];
    }
-
 
    public function getAliases()
    {
