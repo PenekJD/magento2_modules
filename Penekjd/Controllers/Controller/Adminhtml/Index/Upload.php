@@ -10,6 +10,7 @@ use Magento\Framework\Filesystem;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Psr\Log\LoggerInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Upload extends Action implements HttpPostActionInterface
 {
@@ -20,7 +21,8 @@ class Upload extends Action implements HttpPostActionInterface
         protected UploaderFactory $uploaderFactory,
         protected Filesystem $filesystem,
         protected LoggerInterface $logger,
-        protected Http $request
+        protected Http $request,
+        private StoreManagerInterface $storeManager
     ) {
         parent::__construct($context);
     }
@@ -40,8 +42,11 @@ class Upload extends Action implements HttpPostActionInterface
             $uploader->setFilesDispersion(true);
             $result = $uploader->save($mediaDirectory . 'custom_images');
 
+            $mediaUrl = $this->storeManager->getStore()
+                             ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
             if ($result['file']) {
-                $filePath = 'custom_images' . $result['file'];
+                $filePath = $mediaUrl . '/custom_images' . $result['file'];
             }
 
             return $resultJson->setData([

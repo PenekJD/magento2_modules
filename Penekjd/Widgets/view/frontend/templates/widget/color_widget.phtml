@@ -6,8 +6,10 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 
 $config = $block->getConfigJson();
+$configImg = $block->getConfigImg();
 ?>
 <div class="template">
     <h1><?= $escaper->escapeHtml(__('Color widget Demo') . ':') ?></h1>
     <?= /** @noEscape */ $config ?>
+    <img src="<?= $escaper->escapeUrl($configImg) ?>" />
 </div>
