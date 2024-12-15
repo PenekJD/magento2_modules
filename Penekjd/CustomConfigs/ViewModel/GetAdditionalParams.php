@@ -1,4 +1,11 @@
 <?php
+
+/**
+  *  Copyright Dmitry Hrynchyk
+  */
+
+declare(strict_types=1);
+
 namespace Penekjd\Widgets\ViewModel;
 
 use Magento\Framework\View\Element\Block\ArgumentInterface;
@@ -8,13 +15,17 @@ use Magento\Store\Model\ScopeInterface;
 class GetAdditionalParams implements ArgumentInterface
 {
     public function __construct(
-        protected ScopeConfigInterface $scopeConfig
+        private ScopeConfigInterface $scopeConfig
     ) {
     }
 
-    public function getRequestParam($paramName)
+    public function isModuleEnabled(): bool
     {
-        return $this->scopeConfig->getValue('penekjd_configs/general/enable', ScopeInterface::SCOPE_STORE);
+        return (bool) $this->getParameterByPath('penekjd_configs/general/enable');
     }
 
+    private function getParameterByPath(string $paramName): ?string
+    {
+        return $this->scopeConfig->getValue($paramName, ScopeInterface::SCOPE_STORE);
+    }
 }
