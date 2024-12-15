@@ -12,10 +12,11 @@ $id = $block->getData('form_id');
 <input class="js_color_widget_config"
        name="<?= $escaper->escapeHtmlAttr($name) ?>" 
        value="<?= $escaper->escapeHtmlAttr($value) ?>"
-       id="<?= $escaper->escapeHtmlAttr($id) ?>" style="display:block;"/>
-<input id="upload_image" name="image" type="file"/>
-<img id="img_uploaded_preview" src="" width="200" style="max-width:200px;" />
-
+       id="<?= $escaper->escapeHtmlAttr($id) ?>" />
+<div class="img_uploader_block">
+    <img id="img_uploaded_preview" src="" width="200" style="max-width:200px;" />
+    <input id="upload_image" name="image" type="file"/>
+</div>
 
 <div class="color_widget js-color-widget">
     <div class="panel">
@@ -83,7 +84,6 @@ $id = $block->getData('form_id');
                     /* TODO: Fix this part */
                     console.log(data);
                     
-
                     implementImagePreview(data.image_url);
 
                     let saveObj = {};
@@ -102,6 +102,11 @@ $id = $block->getData('form_id');
 
 
 <style>
+.img_uploader_block {
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
 .admin__field.field.field-<?= $escaper->escapeCss($id) ?> {
     display: flex;
     flex-direction: column;

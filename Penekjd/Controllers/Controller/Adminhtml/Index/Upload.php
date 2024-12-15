@@ -14,6 +14,7 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Upload extends Action implements HttpPostActionInterface
 {
+    private const MODULE_RESOURCE_DIRECTORY = 'custom_images';
     
     public function __construct(
         Context $context,
@@ -40,13 +41,13 @@ class Upload extends Action implements HttpPostActionInterface
             $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(true);
-            $result = $uploader->save($mediaDirectory . 'custom_images');
+            $result = $uploader->save($mediaDirectory . self::MODULE_RESOURCE_DIRECTORY);
 
             $mediaUrl = $this->storeManager->getStore()
                              ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 
             if ($result['file']) {
-                $filePath = $mediaUrl . '/custom_images' . $result['file'];
+                $filePath = $mediaUrl . '/' . self::MODULE_RESOURCE_DIRECTORY . $result['file'];
             }
 
             return $resultJson->setData([
