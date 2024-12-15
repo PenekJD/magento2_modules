@@ -11,6 +11,8 @@ use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Psr\Log\LoggerInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\Store;
+use Magento\Framework\UrlInterface;
 
 class Upload extends Action implements HttpPostActionInterface
 {
@@ -43,8 +45,9 @@ class Upload extends Action implements HttpPostActionInterface
             $uploader->setFilesDispersion(true);
             $result = $uploader->save($mediaDirectory . self::MODULE_RESOURCE_DIRECTORY);
 
-            $mediaUrl = $this->storeManager->getStore()
-                             ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+            /** @var Store $store  */
+            $store = $this->storeManager->getStore();
+            $mediaUrl = $store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
 
             if ($result['file']) {
                 $filePath = $mediaUrl . '/' . self::MODULE_RESOURCE_DIRECTORY . $result['file'];

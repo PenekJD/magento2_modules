@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Penekjd\Widgets\ViewModel;
 
+/** @phpstan-ignore-next-line */ // getBaseUrl()
+// phpcs:disable Generic.Files.LineLength.TooLong
+
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
