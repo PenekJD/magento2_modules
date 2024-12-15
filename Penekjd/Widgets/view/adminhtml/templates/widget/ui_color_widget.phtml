@@ -39,6 +39,20 @@ $id = $block->getData('form_id');
 
         function createWidgetPreview(element){
             let addButtons = element.querySelector('.js-add-button');
+            let imgInput = document.getElementById("<?= $escaper->escapeHtmlAttr($id) ?>");
+            let loadedData = imgInput.value+'';
+
+            function implementImagePreview(imgSrc) {
+                let imgElement = document.getElementById("img_uploaded_preview");
+                imgElement.src = imgSrc;
+            }
+
+            if (loadedData) {
+                loadedData = JSON.parse(loadedData);
+                if (loadedData.image_url) {
+                    implementImagePreview(loadedData.image_url);
+                }
+            }
 
             addButtons.addEventListener('click', function(event){
                 event.preventDefault();
@@ -68,9 +82,9 @@ $id = $block->getData('form_id');
                 .then(data => {
                     /* TODO: Fix this part */
                     console.log(data);
-                    let imgElement = document.getElementById("img_uploaded_preview");
-                    let imgInput = document.getElementById("<?= $escaper->escapeHtmlAttr($id) ?>");
-                    imgElement.src = data.image_url;
+                    
+
+                    implementImagePreview(data.image_url);
 
                     let saveObj = {};
                     saveObj.image_url = data.image_url;
