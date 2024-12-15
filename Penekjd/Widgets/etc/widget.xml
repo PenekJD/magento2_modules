@@ -6,13 +6,33 @@
         <label translate="true">Color Block</label>
         <description translate="true">You can draw your own block</description>
         <parameters>
-            <parameter name="wysiwyg_config" 
-                       xsi:type="block"
-                       required="false"
-                       visible="true"
-            >
+            <parameter name="wysiwyg_config" xsi:type="block" required="false" visible="true" >
                 <label>Block drawer</label>
                 <block class="Penekjd\Widgets\Block\Widget\Wysiwyg" />
+            </parameter>
+            <parameter name="product" xsi:type="block" required="false" visible="true">
+                <label>Product</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Product\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Select Product...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="select" xsi:type="select" required="false" visible="true">
+                <label>Select</label>
+                <options>
+                    <option name="option1" value="value1">
+                        <label>Option 1</label>
+                    </option>
+                    <option name="option2" value="value2">
+                        <label>Option 2</label>
+                    </option>
+                    <option name="option3" value="value3">
+                        <label>Option 3</label>
+                    </option>
+                </options>
             </parameter>
         </parameters>
     </widget>
