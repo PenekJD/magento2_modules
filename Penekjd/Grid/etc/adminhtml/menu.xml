@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Penekjd_Grid::helloworld" title="PenekJD"
+             module="Penekjd_Grid" sortOrder="51" resource="Penekjd_Grid::helloworld"
+        />
+        <add id="Penekjd_Grid::post" title="Manage Posts"
+             module="Penekjd_Grid" sortOrder="10"
+             action="penekjd_grid/post"
+             resource="Penekjd_Grid::post"
+             parent="Penekjd_Grid::helloworld"
+        />
+        <!--
+        <add id="Penekjd_Grid::hello_configuration" title="Configuration"
+             module="Penekjd_Grid" sortOrder="99" 
+             parent="Penekjd_Grid::helloworld"
+             action="adminhtml/system_config/edit/section/helloworld"
+             resource="Penekjd_Grid::helloworld_configuration"
+        />
+        -->
+    </menu>
+</config>

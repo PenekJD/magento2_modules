@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">penekjd_grid_form.penekjd_demo_grid_listing_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Edit Record</item>
+    </argument>
+    <dataSource name="penekjd_demo_grid_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <class>Penekjd\Grid\Ui\DataProvider\Form\DataProvider</class>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="url_key">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">URL Key</item>
+                    <item name="dataScope" xsi:type="string">url_key</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>
