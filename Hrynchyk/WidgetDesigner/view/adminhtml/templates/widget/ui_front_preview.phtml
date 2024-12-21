@@ -12,12 +12,52 @@ use Magento\Framework\Escaper;
 /** @var Template $block */
 /** @var Escaper $escaper */
 
+$isDebugMode = true;
+
 $value = $block->getData('form_value');
 $name = $block->getData('form_name');
 $id = $block->getData('form_id');
 ?>
-<div>
-    <input value="<?= $escaper->escapeHtmlAttr($value) ?>"/>
-    <input value="<?= $escaper->escapeHtmlAttr($name) ?>"/>
-    <input value="<?= $escaper->escapeHtmlAttr($id) ?>"/>
-</div>
+<input  class="js_color_widget_config <?php if (!$isDebugMode): ?>sr-only<?php endif; ?>"
+        <?php if ($isDebugMode): ?>
+            style="border:1px solid #f00;"
+        <?php endif; ?>
+        name="<?= $escaper->escapeHtmlAttr($name) ?>" 
+        value="<?= $escaper->escapeHtmlAttr($value) ?>"
+        id="<?= $escaper->escapeHtmlAttr($id) ?>"
+/>
+<?php if ($isDebugMode): ?>
+    <?php
+        $debugRenderArray = [
+            "value" => $value,
+            "name" => $name,
+            "id" => $id
+        ];
+        $tdStyle = "padding: 4px; border: 1px solid #eee;";
+    ?>
+    <div>
+        <table>
+        <?php foreach ($debugRenderArray as $item => $value): ?>
+            <tr>
+                <td style="<?= /** @noEscape */ $tdStyle ?>">
+                    <?= $escaper->escapeHtml($item) ?>
+                </td>
+                <td style="<?= /** @noEscape */ $tdStyle ?>">
+                    <?= $escaper->escapeHtml($value) ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </table>
+    </div>
+<?php endif; ?>
+
+<iframe src="/hrynchyk_widgetdesigner/" width="800" height="600"></iframe>
+
+<style>
+    .field-<?= /** @noEscape */ $id ?> label {
+        display: none;
+    }
+    .sr-only {
+        visibility: hidden; width:0px; height:0px; position:absolute;
+    }
+</style>

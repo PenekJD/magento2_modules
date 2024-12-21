@@ -2,9 +2,9 @@
 
 /**
   *  Copyright Dmitry Hrynchyk
-  */
+*/
 
-  declare(strict_types=1);
+declare(strict_types=1);
 
 namespace Hrynchyk\WidgetDesigner\Block\Widget;
 

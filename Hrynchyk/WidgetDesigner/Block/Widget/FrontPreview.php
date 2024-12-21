@@ -21,16 +21,18 @@ class FrontPreview extends Template implements BlockInterface
         $htmlId = $element->getHtmlId();
         $htmlName = $element->getName();
 
-        $uiComponent = $this->getLayout()
-                        ->createBlock(BlockTemplate::class)
-                        ->setTemplate('Hrynchyk_WidgetDesigner::widget/ui_front_preview.phtml')
-                        ->setData('form_value', $value)
-                        ->setData('form_name', $htmlName)
-                        ->setData('form_id', $htmlId)
-                        ->toHtml();
+        /** @var BlockTemplate $uiComponent */  
+        $uiComponent = $this->getLayout()->createBlock(BlockTemplate::class);
+              
+        $uiComponent = $uiComponent->setTemplate('Hrynchyk_WidgetDesigner::widget/ui_front_preview.phtml')
+            ->setData('form_value', $value)
+            ->setData('form_name', $htmlName)
+            ->setData('form_id', $htmlId)
+            ->toHtml();
 
         $element->setData('after_element_html', $uiComponent);
         $element->setValue(null);
+        
         return $element;
     }
 }
