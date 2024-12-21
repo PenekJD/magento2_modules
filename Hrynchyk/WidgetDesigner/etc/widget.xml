@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/widget_file.xsd">
+    <widget id="widget_designer"
+            class="Hrynchyk\WidgetDesigner\Block\Widget\WidgetDesigner">
+        <label translate="true">Widget Designer</label>
+        <description translate="true">You can draw your own widget</description>
+        <parameters>
+            <parameter name="wysiwyg_config" xsi:type="block" required="false" visible="true" >
+                <label>Block drawer</label>
+                <block class="Hrynchyk\WidgetDesigner\Block\Widget\FrontPreview" />
+            </parameter>
+            <parameter name="widget_type" xsi:type="select" required="false" visible="true">
+                <label>Select widget type</label>
+                <options>
+                    <option name="option1" value="product">
+                        <label>Product</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="product" xsi:type="block" required="false" visible="true">
+                <label>Product</label>
+                <depends>
+                    <parameter name="widget_type" value="product"/>
+                </depends>
+                <block class="Magento\Catalog\Block\Adminhtml\Product\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Select Product...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
